@@ -333,7 +333,41 @@
 </tr>
 </tbody></table>
 <p>chrome中强缓存有from memory cache从内存中获取和from disk cache从磁盘中获取。</p>
-<h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><p>如果没有命中强缓存策略，会发送请求与服务器进行协商，与服务器对比判断资源是否发生修改和更新，如果没有更新，返回304使用缓存中的数据，如果有更新，返回200，服务端将更新后的资源和缓存信息一起返回。与协商缓存相关的头部有：ETag/If-Not-Match，Last-Modified/If-Modified-Since。<br>|头部|协议|可选值|说明|<br>|—-|—-|—-|—-|<br>|Etag|http1.1||存在于响应报文，默认是用hash算法，是一种指纹机制，只要文件变，指纹就会变|<br>|If-Not-Match|http1.1||存在于请求报文，与Etag成对出现|<br>|Last-Modified|http1.0||存在于响应报文，文件最后修改时间（无论内容是否有变化），只能精确到秒|<br>|If-Modified-Since|http1.0||存在于请求报文，与Last-Modified成对|</p>
+<h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><p>如果没有命中强缓存策略，会发送请求与服务器进行协商，与服务器对比判断资源是否发生修改和更新，如果没有更新，返回304使用缓存中的数据，如果有更新，返回200，服务端将更新后的资源和缓存信息一起返回。与协商缓存相关的头部有：ETag/If-Not-Match，Last-Modified/If-Modified-Since。</p>
+<table>
+<thead>
+<tr>
+<th>头部</th>
+<th>协议</th>
+<th>可选值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Etag</td>
+<td>http1.1</td>
+<td></td>
+<td>存在于响应报文，默认是用hash算法，是一种指纹机制，只要文件变，指纹就会变</td>
+</tr>
+<tr>
+<td>If-Not-Match</td>
+<td>http1.1</td>
+<td></td>
+<td>存在于请求报文，与Etag成对出现</td>
+</tr>
+<tr>
+<td>Last-Modified</td>
+<td>http1.0</td>
+<td></td>
+<td>存在于响应报文，文件最后修改时间（无论内容是否有变化），只能精确到秒</td>
+</tr>
+<tr>
+<td>If-Modified-Since</td>
+<td>http1.0</td>
+<td></td>
+<td>存在于请求报文，与Last-Modified成对</td>
+</tr>
+</tbody></table>
 <h1 id="如何使用HTTP缓存"><a href="#如何使用HTTP缓存" class="headerlink" title="如何使用HTTP缓存"></a>如何使用HTTP缓存</h1><ol>
 <li>html页面：在head标签中嵌入meta，只对页面有效，对页面上的资源无效<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;pragma&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no-cache&quot;</span>&gt;</span> <span class="comment">&lt;!--IE 页面禁用缓存--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;cache-control&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no-cache&quot;</span>&gt;</span> <span class="comment">&lt;!--其他主流浏览器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;expires&quot;</span> <span class="attr">content</span>=<span class="string">&quot;0&quot;</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Cache-Control&quot;</span> <span class="attr">content</span>=<span class="string">&quot;max-age=7200&quot;</span> /&gt;</span> <span class="comment">&lt;!----&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Expires&quot;</span> <span class="attr">content</span>=<span class="string">&quot;Mon, 20 Aug 2018 23:00:00 GMT&quot;</span> /&gt;</span> <span class="comment">&lt;!----&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li>静态资源：一般在web服务器上配置，以Nginx为例：<br>nginx中提供expires，etag，if-modified-since指令来进行浏览器缓存控制</li>
