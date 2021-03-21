@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="缓存," />
 
 
 
@@ -79,14 +79,17 @@
 
 
 
+<meta name="description" content="前端缓存可以分为浏览器缓存和HTTP缓存，本次主要记录HTTP缓存的相关内容 什么是HTTP缓存http缓存是客户端向服务端请求资源时，如果浏览器中有请求资源的副本，会直接从浏览器中提取资源，而不是服务器。（常见http缓存只能缓存get请求响应的资源） HTTP缓存的分类根据是否需要向服务器发起请求，可分为强缓存和协商缓存，二者通过不同的http头部区分。 强缓存浏览器如果判断缓存数据未过期，就">
 <meta property="og:type" content="article">
 <meta property="og:title" content="http缓存的一些笔记">
 <meta property="og:url" content="http://example.com/2021/03/21/http%E7%BC%93%E5%AD%98%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Qianyu&#39;s Blog">
+<meta property="og:description" content="前端缓存可以分为浏览器缓存和HTTP缓存，本次主要记录HTTP缓存的相关内容 什么是HTTP缓存http缓存是客户端向服务端请求资源时，如果浏览器中有请求资源的副本，会直接从浏览器中提取资源，而不是服务器。（常见http缓存只能缓存get请求响应的资源） HTTP缓存的分类根据是否需要向服务器发起请求，可分为强缓存和协商缓存，二者通过不同的http头部区分。 强缓存浏览器如果判断缓存数据未过期，就">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-03-21T04:37:54.000Z">
-<meta property="article:modified_time" content="2021-03-21T04:37:54.688Z">
+<meta property="article:modified_time" content="2021-03-21T09:18:41.533Z">
 <meta property="article:author" content="Qianyu Yan">
+<meta property="article:tag" content="缓存">
 <meta name="twitter:card" content="summary">
 
 
@@ -297,7 +300,53 @@
       
 
       
-        
+        <p>前端缓存可以分为浏览器缓存和HTTP缓存，本次主要记录HTTP缓存的相关内容</p>
+<h1 id="什么是HTTP缓存"><a href="#什么是HTTP缓存" class="headerlink" title="什么是HTTP缓存"></a>什么是HTTP缓存</h1><p>http缓存是客户端向服务端请求资源时，如果浏览器中有请求资源的副本，会直接从浏览器中提取资源，而不是服务器。（常见http缓存只能缓存get请求响应的资源）</p>
+<h1 id="HTTP缓存的分类"><a href="#HTTP缓存的分类" class="headerlink" title="HTTP缓存的分类"></a>HTTP缓存的分类</h1><p>根据是否需要向服务器发起请求，可分为强缓存和协商缓存，二者通过不同的http头部区分。</p>
+<h2 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h2><p>浏览器如果判断缓存数据未过期，就直接使用，无需发起http请求。与强缓存相关的头部有：Pragma，Expires，Cache-Control</p>
+<table>
+<thead>
+<tr>
+<th>头部</th>
+<th>协议</th>
+<th>可选值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pragma</td>
+<td>http1.0</td>
+<td>no-cache</td>
+<td>响应头部不支持该属性让本地强缓存失效，属于编译控制</td>
+</tr>
+<tr>
+<td>Expires</td>
+<td>http1.0</td>
+<td>服务端时间</td>
+<td>服务端配置，在规定的时间之前。浏览器不会发送请求</td>
+</tr>
+<tr>
+<td>Cache-Control</td>
+<td>http1.1</td>
+<td>no-cache：不直接使用缓存<br> no-store: 不使用缓存<br> max-age: 缓存时长，绝对时间，XXX秒，客户端根据本地时间计算<br> public/private: 是否只能被单个用户使用<br> must-revalidate：每次访问需要缓存校验</td>
+<td>请求头部和响应头部均支持</td>
+</tr>
+</tbody></table>
+<p>chrome中强缓存有from memory cache从内存中获取和from disk cache从磁盘中获取。</p>
+<h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><p>如果没有命中强缓存策略，会发送请求与服务器进行协商，与服务器对比判断资源是否发生修改和更新，如果没有更新，返回304使用缓存中的数据，如果有更新，返回200，服务端将更新后的资源和缓存信息一起返回。与协商缓存相关的头部有：ETag/If-Not-Match，Last-Modified/If-Modified-Since。<br>|头部|协议|可选值|说明|<br>|—-|—-|—-|—-|<br>|Etag|http1.1||存在于响应报文，默认是用hash算法，是一种指纹机制，只要文件变，指纹就会变|<br>|If-Not-Match|http1.1||存在于请求报文，与Etag成对出现|<br>|Last-Modified|http1.0||存在于响应报文，文件最后修改时间（无论内容是否有变化），只能精确到秒|<br>|If-Modified-Since|http1.0||存在于请求报文，与Last-Modified成对|</p>
+<h1 id="如何使用HTTP缓存"><a href="#如何使用HTTP缓存" class="headerlink" title="如何使用HTTP缓存"></a>如何使用HTTP缓存</h1><ol>
+<li>html页面：在head标签中嵌入meta，只对页面有效，对页面上的资源无效<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;pragma&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no-cache&quot;</span>&gt;</span> <span class="comment">&lt;!--IE 页面禁用缓存--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;cache-control&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no-cache&quot;</span>&gt;</span> <span class="comment">&lt;!--其他主流浏览器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;expires&quot;</span> <span class="attr">content</span>=<span class="string">&quot;0&quot;</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Cache-Control&quot;</span> <span class="attr">content</span>=<span class="string">&quot;max-age=7200&quot;</span> /&gt;</span> <span class="comment">&lt;!----&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Expires&quot;</span> <span class="attr">content</span>=<span class="string">&quot;Mon, 20 Aug 2018 23:00:00 GMT&quot;</span> /&gt;</span> <span class="comment">&lt;!----&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>静态资源：一般在web服务器上配置，以Nginx为例：<br>nginx中提供expires，etag，if-modified-since指令来进行浏览器缓存控制</li>
+</ol>
+<p>未完待续～s</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li>[1] <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000013662126">https://segmentfault.com/a/1190000013662126</a></li>
+<li>[2] <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/227cee9c8d15">https://www.jianshu.com/p/227cee9c8d15</a></li>
+<li>[3] <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903986345017358#heading-14">https://juejin.cn/post/6844903986345017358#heading-14</a></li>
+<li>[4] <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39399966/article/details/102853277">https://blog.csdn.net/qq_39399966/article/details/102853277</a></li>
+<li>[5] <a target="_blank" rel="noopener" href="https://shuwoom.com/?p=4311">https://shuwoom.com/?p=4311</a></li>
+</ul>
+
       
     </div>
     
@@ -311,6 +360,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BC%93%E5%AD%98/" rel="tag"># 缓存</a>
+          
+        </div>
       
 
       
@@ -381,8 +436,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -406,6 +470,15 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
 
           </nav>
 
@@ -424,6 +497,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFHTTP%E7%BC%93%E5%AD%98"><span class="nav-number">1.</span> <span class="nav-text">什么是HTTP缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP%E7%BC%93%E5%AD%98%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">HTTP缓存的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E7%BC%93%E5%AD%98"><span class="nav-number">2.1.</span> <span class="nav-text">强缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98"><span class="nav-number">2.2.</span> <span class="nav-text">协商缓存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8HTTP%E7%BC%93%E5%AD%98"><span class="nav-number">3.</span> <span class="nav-text">如何使用HTTP缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
