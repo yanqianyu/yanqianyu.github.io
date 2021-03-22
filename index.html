@@ -229,6 +229,125 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/22/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qianyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/03/22/%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/" itemprop="url">跨域问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-22T10:14:06+08:00">
+                2021-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/21/http%E7%BC%93%E5%AD%98%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -370,15 +489,55 @@
 </tbody></table>
 <h1 id="如何使用HTTP缓存"><a href="#如何使用HTTP缓存" class="headerlink" title="如何使用HTTP缓存"></a>如何使用HTTP缓存</h1><ol>
 <li>html页面：在head标签中嵌入meta，只对页面有效，对页面上的资源无效<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;pragma&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no-cache&quot;</span>&gt;</span> <span class="comment">&lt;!--IE 页面禁用缓存--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;cache-control&quot;</span> <span class="attr">content</span>=<span class="string">&quot;no-cache&quot;</span>&gt;</span> <span class="comment">&lt;!--其他主流浏览器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;expires&quot;</span> <span class="attr">content</span>=<span class="string">&quot;0&quot;</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Cache-Control&quot;</span> <span class="attr">content</span>=<span class="string">&quot;max-age=7200&quot;</span> /&gt;</span> <span class="comment">&lt;!----&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Expires&quot;</span> <span class="attr">content</span>=<span class="string">&quot;Mon, 20 Aug 2018 23:00:00 GMT&quot;</span> /&gt;</span> <span class="comment">&lt;!----&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>静态资源：一般在web服务器上配置，以Nginx为例：<br>nginx中提供expires，etag，if-modified-since指令来进行浏览器缓存控制</li>
+<li>静态资源：一般在web服务器上配置，以Nginx为例</li>
 </ol>
-<p>未完待续～</p>
+<ul>
+<li>缓存文件放哪儿</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>proxy_cache_path</td>
+<td>指定缓存位置、缓存名称、内存中缓存内容元数据信息大小限制、缓存总大小限制</td>
+</tr>
+<tr>
+<td>proxy_cache</td>
+<td>指定使用前面设置的缓存名称</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>如何指定哪些请求被缓存</p>
+<ul>
+<li>Nginx默认缓存所有get和head方法的请求结果，缓存的key默认使用请求字符串</li>
+<li>自定义key proxy_cache_key</li>
+<li>指定请求至少被发送了多少次以上时才缓存 proxy_cache_min_uses</li>
+<li>指定哪些方法的请求被缓存 proxy_cache_methods</li>
+</ul>
+</li>
+<li><p>如何指定哪些请求不被缓存</p>
+<ul>
+<li>proxy_cache_bypass 不从缓存中获取的条件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxy_cache_bypass $cookie_nocache $arg_nocache $arg_comment $http_pragma $http_authorization</span><br></pre></td></tr></table></figure>
+当至少有一个字符串指令不为空或者不等于0时,相应数据不从缓存获取</li>
+</ul>
+</li>
+<li><p>缓存的有效期<br>默认情况下，缓存的内容长期留存，除非缓存总量超出限制，可以指定缓存的有效期</p>
+<ul>
+<li>proxy_cache_valid 状态码 有效期</li>
+</ul>
+</li>
+</ul>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li>[1] <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000013662126">https://segmentfault.com/a/1190000013662126</a></li>
 <li>[2] <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/227cee9c8d15">https://www.jianshu.com/p/227cee9c8d15</a></li>
 <li>[3] <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903986345017358#heading-14">https://juejin.cn/post/6844903986345017358#heading-14</a></li>
 <li>[4] <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39399966/article/details/102853277">https://blog.csdn.net/qq_39399966/article/details/102853277</a></li>
 <li>[5] <a target="_blank" rel="noopener" href="https://shuwoom.com/?p=4311">https://shuwoom.com/?p=4311</a></li>
+<li>[6] <a target="_blank" rel="noopener" href="https://blog.csdn.net/h13140995776/article/details/101174283">https://blog.csdn.net/h13140995776/article/details/101174283</a></li>
 </ul>
 
           
@@ -584,7 +743,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
