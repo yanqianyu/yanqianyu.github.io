@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="css 布局," />
+  <meta name="keywords" content="css,布局," />
 
 
 
@@ -87,9 +87,10 @@
 <meta property="og:description" content="Flex布局又称弹性布局，任一容器都可以设置flex布局。 Flex中的概念 容器：设置display: flex 的元素 项目：容器中 &#x3D;&#x3D;直接&#x3D;&#x3D; 子元素 主轴：项目的默认排序方向，默认横向排列，一个容器可以有多个主轴 交叉轴：与主轴垂直的轴  容器的属性flex-directionflex-direction决定主轴方向，有4种取值：  row：默认值，主轴水平方向，起点在左端 row-re">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-03-25T14:41:24.000Z">
-<meta property="article:modified_time" content="2021-03-25T15:34:33.093Z">
+<meta property="article:modified_time" content="2021-03-26T11:08:11.591Z">
 <meta property="article:author" content="Qianyu Yan">
-<meta property="article:tag" content="css 布局">
+<meta property="article:tag" content="css">
+<meta property="article:tag" content="布局">
 <meta name="twitter:card" content="summary">
 
 
@@ -312,7 +313,10 @@
 <li>row：默认值，主轴水平方向，起点在左端</li>
 <li>row-reverse：主轴水平方向，起点在右端</li>
 <li>column：主轴为垂直方向，起点在上端</li>
-<li>column-reverse：主轴为垂直方向，起点在下端</li>
+<li>column-reverse：主轴为垂直方向，起点在下端<iframe height="373" style="width: 100%;" scrolling="no" title="flex-direction" src="https://codepen.io/BestSilvia/embed/dyNGwBK?height=373&theme-id=dark&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia/pen/dyNGwBK'>flex-direction</a> by YanQianyu
+(<a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia'>@BestSilvia</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe></li>
 </ul>
 <h2 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h2><p>决定项目排不下时如何换行</p>
 <ul>
@@ -320,16 +324,71 @@
 <li>wrap：换行，第一行在上方</li>
 <li>wrap-reverse：换行，第一行在下方</li>
 </ul>
+<iframe height="265" style="width: 100%;" scrolling="no" title="flex-wrap" src="https://codepen.io/BestSilvia/embed/KKaVJZW?height=265&theme-id=dark&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia/pen/KKaVJZW'>flex-wrap</a> by YanQianyu
+  (<a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia'>@BestSilvia</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
 <h2 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h2><p>是flex-direction和flex-wrap的简写形式</p>
 <h2 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h2><p>处理项目外的富余空间</p>
 <ul>
+<li>flex-start：默认值，项目左对齐</li>
+<li>flex-end：项目右对齐</li>
+<li>center：项目居中</li>
+<li>space-around：项目两端对齐，项目之间的间隔相等</li>
+<li>space-between：每个项目两侧间隔相等</li>
+</ul>
+<iframe height="265" style="width: 100%;" scrolling="no" title="justify-content" src="https://codepen.io/BestSilvia/embed/OJWMqvx?height=265&theme-id=dark&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia/pen/OJWMqvx'>justify-content</a> by YanQianyu
+  (<a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia'>@BestSilvia</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+<h2 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h2><p>决定项目在交叉轴上如何对齐</p>
+<ul>
+<li>stretch：默认值，如果项目未设置高度或者设为auto，将占满整个容器的高度</li>
+<li>flex-start：交叉轴的起点对齐</li>
+<li>flex-end：交叉轴的重点对齐</li>
+<li>center：交叉轴的中点对齐</li>
+<li>baseline：项目的第一行文字的基线对齐</li>
+</ul>
+<iframe height="265" style="width: 100%;" scrolling="no" title="align-items" src="https://codepen.io/BestSilvia/embed/VwPeRRP?height=265&theme-id=dark&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia/pen/VwPeRRP'>align-items</a> by YanQianyu
+  (<a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia'>@BestSilvia</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+<h2 id="align-content"><a href="#align-content" class="headerlink" title="align-content"></a>align-content</h2><p>决定了多根主轴的对齐方式</p>
+<ul>
+<li>stretch：默认值，轴线占满整个交叉轴</li>
+<li>flex-start：与交叉轴的地点对齐</li>
+<li>flex-end：与交叉轴的终点对齐</li>
+<li>center：与交叉轴的中点对齐</li>
+<li>space-between：与交叉轴两端对齐，轴线之间的间隔平均分</li>
+<li>space-around：每根轴线两侧的间隔都相等</li>
+</ul>
+<iframe height="265" style="width: 100%;" scrolling="no" title="align-content" src="https://codepen.io/BestSilvia/embed/JjEGVRb?height=265&theme-id=dark&default-tab=html,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia/pen/JjEGVRb'>align-content</a> by YanQianyu
+  (<a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia'>@BestSilvia</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+<h1 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h1><h2 id="order"><a href="#order" class="headerlink" title="order"></a>order</h2><p>定义项目的排列顺序，数值越小，排列越靠前，默认0</p>
+<h2 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h2><p>定义项目的放大比例，默认0，即如果存在剩余空间，也不放大</p>
+<iframe height="265" style="width: 100%;" scrolling="no" title="order" src="https://codepen.io/BestSilvia/embed/eYgJoaB?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia/pen/eYgJoaB'>order</a> by YanQianyu
+  (<a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia'>@BestSilvia</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+<h2 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h2><p>定义项目的缩小比例，默认1，即如果空间不足，该项目将缩小</p>
+<h2 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h2><p>定义在分配多余空间之前，项目占据的主轴空间，浏览器可以根据这个属性，计算主轴是否有多余的空间，默认值为auto，代表项目的本来大小，也可以设置为固定值XX px</p>
+<h2 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h2><p>是flex-grow、flex-shrink和flex-basis的简写，默认值0 1 auto</p>
+<h2 id="align-self"><a href="#align-self" class="headerlink" title="align-self"></a>align-self</h2><p>允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items，默认为auto，表示继承父元素align-items属性，如果没有父元素，则等同于stretch</p>
+<ul>
+<li>auto</li>
+<li>stretch</li>
 <li>flex-start</li>
 <li>flex-end</li>
 <li>center</li>
-<li>space-around</li>
-<li>space-between</li>
+<li>baseline</li>
 </ul>
-<h2 id="align-items："><a href="#align-items：" class="headerlink" title="align-items："></a>align-items：</h2><h2 id="align-content："><a href="#align-content：" class="headerlink" title="align-content："></a>align-content：</h2><p>未完待续～</p>
 
       
     </div>
@@ -347,7 +406,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/css-%E5%B8%83%E5%B1%80/" rel="tag"># css 布局</a>
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+            <a href="/tags/%E5%B8%83%E5%B1%80/" rel="tag"># 布局</a>
           
         </div>
       
@@ -458,7 +519,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -491,7 +552,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flex%E4%B8%AD%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">Flex中的概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">容器的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#flex-direction"><span class="nav-number">2.1.</span> <span class="nav-text">flex-direction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex-wrap"><span class="nav-number">2.2.</span> <span class="nav-text">flex-wrap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex-flow"><span class="nav-number">2.3.</span> <span class="nav-text">flex-flow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#justify-content"><span class="nav-number">2.4.</span> <span class="nav-text">justify-content</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#align-items%EF%BC%9A"><span class="nav-number">2.5.</span> <span class="nav-text">align-items：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#align-content%EF%BC%9A"><span class="nav-number">2.6.</span> <span class="nav-text">align-content：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flex%E4%B8%AD%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">Flex中的概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">容器的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#flex-direction"><span class="nav-number">2.1.</span> <span class="nav-text">flex-direction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex-wrap"><span class="nav-number">2.2.</span> <span class="nav-text">flex-wrap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex-flow"><span class="nav-number">2.3.</span> <span class="nav-text">flex-flow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#justify-content"><span class="nav-number">2.4.</span> <span class="nav-text">justify-content</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#align-items"><span class="nav-number">2.5.</span> <span class="nav-text">align-items</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#align-content"><span class="nav-number">2.6.</span> <span class="nav-text">align-content</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">项目的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#order"><span class="nav-number">3.1.</span> <span class="nav-text">order</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex-grow"><span class="nav-number">3.2.</span> <span class="nav-text">flex-grow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex-shrink"><span class="nav-number">3.3.</span> <span class="nav-text">flex-shrink</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex-basis"><span class="nav-number">3.4.</span> <span class="nav-text">flex-basis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex"><span class="nav-number">3.5.</span> <span class="nav-text">flex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#align-self"><span class="nav-number">3.6.</span> <span class="nav-text">align-self</span></a></li></ol></li></ol></div>
             
 
           </div>
