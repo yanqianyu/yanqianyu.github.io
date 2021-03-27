@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="en">
+<html class="theme-next gemini use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="Flex布局又称弹性布局，任一容器都可以设置flex布局。 Flex中的概念 容器：设置display: flex 的元素 项目：容器中的直接子元素 主轴：项目的默认排序方向，默认横向排列，一个容器可以有多个主轴 交叉轴：与主轴垂直的轴  容器的属性flex-directionflex-direction决定主轴方向，有4种取值：  row：默认值，主轴水平方向，起点在左端 row-reverse">
+<meta name="description" content="Flex布局又称弹性布局，任一容器都可以设置flex布局。 Flex中的概念 容器：设置display: flex 的元素 项目：容器中的直接子元素 主轴：项目的默认排序方向，默认横向排列，一个容器可以有多个主轴 交叉轴：与主轴垂直的轴">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flex布局">
 <meta property="og:url" content="http://example.com/2021/03/25/flex%E5%B8%83%E5%B1%80/index.html">
 <meta property="og:site_name" content="Qianyu&#39;s Blog">
-<meta property="og:description" content="Flex布局又称弹性布局，任一容器都可以设置flex布局。 Flex中的概念 容器：设置display: flex 的元素 项目：容器中的直接子元素 主轴：项目的默认排序方向，默认横向排列，一个容器可以有多个主轴 交叉轴：与主轴垂直的轴  容器的属性flex-directionflex-direction决定主轴方向，有4种取值：  row：默认值，主轴水平方向，起点在左端 row-reverse">
+<meta property="og:description" content="Flex布局又称弹性布局，任一容器都可以设置flex布局。 Flex中的概念 容器：设置display: flex 的元素 项目：容器中的直接子元素 主轴：项目的默认排序方向，默认横向排列，一个容器可以有多个主轴 交叉轴：与主轴垂直的轴">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-03-25T14:41:24.000Z">
-<meta property="article:modified_time" content="2021-03-26T11:12:43.128Z">
+<meta property="article:modified_time" content="2021-03-27T11:34:42.013Z">
 <meta property="article:author" content="Qianyu Yan">
 <meta property="article:tag" content="css">
 <meta property="article:tag" content="布局">
@@ -99,9 +99,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -183,7 +183,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -192,8 +192,28 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -274,6 +294,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -306,7 +348,7 @@
 <li>容器：设置<code>display: flex</code> 的元素</li>
 <li>项目：容器中的<strong>直接</strong>子元素</li>
 <li>主轴：项目的默认排序方向，默认横向排列，一个容器可以有多个主轴</li>
-<li>交叉轴：与主轴垂直的轴</li>
+<li>交叉轴：与主轴垂直的轴<span id="more"></span></li>
 </ul>
 <h1 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h1><h2 id="flex-direction"><a href="#flex-direction" class="headerlink" title="flex-direction"></a>flex-direction</h2><p>flex-direction决定主轴方向，有4种取值：</p>
 <ul>
@@ -512,7 +554,7 @@ See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvi
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/%7C%7C%20archive">
               
                   <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">posts</span>
@@ -521,15 +563,24 @@ See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvi
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
 
             
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
@@ -598,7 +649,7 @@ See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvi
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -697,6 +748,13 @@ See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvi
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
