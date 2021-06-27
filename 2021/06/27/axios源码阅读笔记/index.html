@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="面经," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,17 +79,16 @@
 
 
 
-<meta name="description" content="HTML HTML5的新特性   video、audio元素 localStorage 语义化标签 article、footer、header、nav、section 表单控件 calendar、date、time、email、url等 web worker">
+<meta name="description" content="123456789101112131415161718192021222324252627282930graph LR; adapters --&gt; http.js adapters --&gt; xhr.js  cancel --&gt; Cancel.js cancel --&gt; CancelToken.js cancel --&gt; isCancel.js  core --&gt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面经">
-<meta property="og:url" content="http://example.com/2021/03/26/%E9%9D%A2%E7%BB%8F/index.html">
+<meta property="og:title" content="axios源码阅读笔记">
+<meta property="og:url" content="http://example.com/2021/06/27/axios%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Qianyu&#39;s Blog">
-<meta property="og:description" content="HTML HTML5的新特性   video、audio元素 localStorage 语义化标签 article、footer、header、nav、section 表单控件 calendar、date、time、email、url等 web worker">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930graph LR; adapters --&gt; http.js adapters --&gt; xhr.js  cancel --&gt; Cancel.js cancel --&gt; CancelToken.js cancel --&gt; isCancel.js  core --&gt;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-03-26T12:38:29.000Z">
-<meta property="article:modified_time" content="2021-03-28T09:01:01.482Z">
+<meta property="article:published_time" content="2021-06-27T04:24:54.000Z">
+<meta property="article:modified_time" content="2021-06-27T04:25:31.710Z">
 <meta property="article:author" content="Qianyu Yan">
-<meta property="article:tag" content="面经">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2021/03/26/面经/"/>
+  <link rel="canonical" href="http://example.com/2021/06/27/axios源码阅读笔记/"/>
 
 
 
 
 
-  <title>面经 | Qianyu's Blog</title>
+  <title>axios源码阅读笔记 | Qianyu's Blog</title>
   
 
 
@@ -253,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/26/%E9%9D%A2%E7%BB%8F/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/27/axios%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -270,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">面经</h1>
+          <h1 class="post-title" itemprop="name headline">axios源码阅读笔记</h1>
         
 
         <div class="post-meta">
@@ -282,8 +281,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-26T20:38:29+08:00">
-                2021-03-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-06-27T12:24:54+08:00">
+                2021-06-27
               </time>
             
 
@@ -292,28 +291,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">面试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -342,107 +319,55 @@
       
 
       
-        <h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><ol>
-<li>HTML5的新特性</li>
-</ol>
-<ul>
-<li>video、audio元素</li>
-<li>localStorage</li>
-<li>语义化标签 article、footer、header、nav、section</li>
-<li>表单控件 calendar、date、time、email、url等</li>
-<li>web worker<span id="more"></span></li>
-</ul>
-<ol start="2">
-<li>如何理解语义化</li>
-</ol>
-<ul>
-<li>语义化让页面内容结构化，便于浏览器、搜索引擎解析</li>
-<li>没有css的情况下也以一种文档格式显示，并且是容易阅读的</li>
-<li>搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于SEO</li>
-<li>使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解</li>
-</ul>
-<ol start="3">
-<li>块级标签 行内标签<br>块级标签：每个块标签通常都会独自占据一行或多行，常见的块标签h1~h6、p、div、ul、ol、li<br>块级标签特点：</li>
-</ol>
-<ul>
-<li>占据整行</li>
-<li>高度、行高、外边距以及内边距都可以控制</li>
-<li>宽度默认是容器的100%</li>
-<li>可以容纳行内标签和其他标签</li>
-</ul>
-<p>行内标签：靠自身的字体大小和图像尺寸支撑结构，常见的行内标签a、strong、b、em、i、del、s、ins、u、span</p>
-<ul>
-<li>和相邻行内标签在一行上</li>
-<li>高、宽无效，但水平方向的padding、margin可以设置，垂直方向无效</li>
-<li>行内标签只能容纳文本或其他行内标签</li>
-</ul>
-<ol start="4">
-<li>localStorage、sessionStorage、cookie<br>cookie：一般不超过4k，适合保存会话标识，一般由服务器生成，可以设置失效时间；未设置时间的，关闭浏览器cookie就会失效；若设置了时间，cookie就会存放在硬盘里，过期才失效。cookie在所有同源窗口中都是共享的</li>
-</ol>
-<p>sessionStorage：5M，仅在当前浏览器窗口关闭之前有效。同一个浏览器窗口都是共享的</p>
-<p>localStorage：5M，除非手动清楚，否则永久有效。所有同源窗口共享</p>
-<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><ol>
-<li>如何让一个元素在其父元素中居中显示</li>
-</ol>
-<p>水平居中</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="Horizontally centered" src="https://codepen.io/BestSilvia/embed/KKazeQg?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia/pen/KKazeQg'>Horizontally centered</a> by YanQianyu
-  (<a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia'>@BestSilvia</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
+        <h1 id=""><a href="#" class="headerlink" title=""></a></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"> adapters --&gt; http.js</span><br><span class="line"> adapters --&gt; xhr.js</span><br><span class="line"> </span><br><span class="line"> cancel --&gt; Cancel.js</span><br><span class="line"> cancel --&gt; CancelToken.js</span><br><span class="line"> cancel --&gt; isCancel.js</span><br><span class="line"> </span><br><span class="line"> core --&gt; Axios.js</span><br><span class="line"> core --&gt; createError.js</span><br><span class="line"> core --&gt; dispatchRequest.js</span><br><span class="line"> core --&gt; enhanceError.js</span><br><span class="line"> core --&gt; InterceptorManager.js</span><br><span class="line"> core --&gt; settle.js</span><br><span class="line"> core --&gt; transformData.js</span><br><span class="line"> </span><br><span class="line"> helpers --&gt; bind.js</span><br><span class="line"> helpers --&gt; buildURL.js</span><br><span class="line"> helpers --&gt; combineURL.js</span><br><span class="line"> helpers --&gt; cookies.js</span><br><span class="line"> helpers --&gt; deprecatedMethod.js</span><br><span class="line"> helpers --&gt; isAbsoluteURL.js</span><br><span class="line"> helpers --&gt; isURLSameOrigin.js</span><br><span class="line"> helpers --&gt; normalizeHeaderName.js</span><br><span class="line"> helpers --&gt; parseHeaders.js</span><br><span class="line"> helpers --&gt; spread.js</span><br><span class="line"></span><br><span class="line"> axios.js --&gt; 对外暴露接口</span><br><span class="line"> defaults.js --&gt; 默认配置</span><br><span class="line"> utils.js --&gt; 工具方法</span><br></pre></td></tr></table></figure>
 
-<p>垂直居中</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="Vertically centered" src="https://codepen.io/BestSilvia/embed/QWdNBKM?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia/pen/QWdNBKM'>Vertically centered</a> by YanQianyu
-  (<a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia'>@BestSilvia</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
 
-<p>水平垂直居中</p>
-<iframe height="265" style="width: 100%;" scrolling="no" title="center" src="https://codepen.io/BestSilvia/embed/ExZKpwM?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia/pen/ExZKpwM'>center</a> by YanQianyu
-  (<a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia'>@BestSilvia</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe>
 
-<ol start="2">
-<li><p>如何清除浮动</p>
+<h2 id="axios实例"><a href="#axios实例" class="headerlink" title="axios实例"></a>axios实例</h2><p>axios入口文件： /lib/axios.js</p>
+<p>createInstance(defaultConfig)用于创建axios实例</p>
+<p>axios(config) –&gt; request</p>
+<p>axios.(url[, config]) –&gt; request (/lib/core/Axios.js中的forEachMethodNoData去合并config)，axios.get(‘XXXX’, {}) 调用的是Axios.prototype[method] = function(url, config){}</p>
+<h2 id="Axios类"><a href="#Axios类" class="headerlink" title="Axios类"></a>Axios类</h2><p>/lib/core/Axios.js下</p>
+<p>Axios.prototype.request 发送请求</p>
+<p>request和reponse的拦截器是放入同一个数组的，一个往头添加 一个往尾添加</p>
+<h2 id="dispatchRequest"><a href="#dispatchRequest" class="headerlink" title="dispatchRequest"></a>dispatchRequest</h2><p>发送请求 </p>
+<p>取消机制，确保头部存在，转化request数据，</p>
+<p>adapter适配器</p>
+<p>onAdapterResolution</p>
+<h2 id="CancelToken"><a href="#CancelToken" class="headerlink" title="CancelToken"></a>CancelToken</h2><p>axios的取消机制</p>
+<h2 id="Adapter"><a href="#Adapter" class="headerlink" title="Adapter"></a>Adapter</h2><p>/lib/adapters下</p>
+<p>xhr.js中用的是XMLHttpRequest这个方法</p>
+<h2 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">graph TB;</span><br><span class="line"> axios --&gt; createInstance</span><br><span class="line"> axios.creat --&gt; createInstance</span><br><span class="line"> createInstance --&gt; 执行&#x2F;别名执行</span><br><span class="line"> config --&gt; 执行&#x2F;别名执行</span><br><span class="line"> 执行&#x2F;别名执行 --&gt; Axios.prototype.request</span><br><span class="line"> Axios.prototype.request --&gt; interceptors</span><br><span class="line"> interceptors --&gt; dispatchRequest</span><br><span class="line"> transformdata --&gt; dispatchRequest</span><br><span class="line"> dispatchRequest --&gt; adapter</span><br><span class="line"> adapter --&gt; 报错&#x2F;cancel</span><br><span class="line"> 报错&#x2F;cancel --yes--&gt; yes(&quot;axios rejected&quot;)</span><br><span class="line"> 报错&#x2F;cancel --no--&gt; no(&quot;axios fulfilled&quot;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><ol>
+<li><p>axios对象如果做到既能做对象使用，又能做 函数使用</p>
+<p>axios.get(url[, config])和axios(config)</p>
+<p>在创建实例createInstance中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> instance = bind(Axios.prototype.request, context);</span><br></pre></td></tr></table></figure>
+
+<p>instance其实是一个绑定了this的函数，调用axios其实是调用context.request -&gt; 做函数使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">utils.extend(instance, Axios.prototype, context);</span><br></pre></td></tr></table></figure>
+
+<p>这一行将Axios.prototype上的方法扩展到instance对象上，所以axios.get相当于Axios.prototype.get（绑定了context）</p>
+</li>
+<li><p>拦截器的主要逻辑</p>
 <ul>
-<li>首先，什么是浮动？浮动的框可以向左或向右移动，直到它的外边缘碰到<strong>包含框</strong>或<strong>另一个浮动框</strong>的边框为止。由于浮动框不在文档的普通流中，所以文档的普通流中的块框表现得像浮动框不存在一样。</li>
-<li>如何实现浮动？通过css的float属性，定义元素向哪个方向浮动<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">left</span> 向左浮动</span><br><span class="line"><span class="attribute">right</span> 向右浮动</span><br><span class="line"><span class="attribute">none</span> 默认值，元素不浮动</span><br><span class="line"><span class="attribute">inherit</span> 继承值，从父元素继承<span class="attribute">float</span>属性的值</span><br></pre></td></tr></table></figure></li>
-<li>如何清除浮动？<br>浮动可以把多个块级元素放到想要的一行上，但是浮动会影响标准流，比如浮动会影响标准流（高度塌陷）<iframe height="265" style="width: 100%;" scrolling="no" title="清除浮动" src="https://codepen.io/BestSilvia/embed/GRrZwBN?height=265&theme-id=dark&default-tab=css,result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia/pen/GRrZwBN'>清除浮动</a> by YanQianyu
-(<a target="_blank" rel="noopener" href='https://codepen.io/BestSilvia'>@BestSilvia</a>) on <a target="_blank" rel="noopener" href='https://codepen.io'>CodePen</a>.
-</iframe></li>
+<li>发送请求的整个执行顺序是，requestInterceptors –&gt; dispatchRequest –&gt; responseInterceptors</li>
+<li>拦截器最初接收的对象是config，axios使用中也规定，请求的拦截器必须要返回config，这也是每个请求拦截器的函数参数是config的原因</li>
+<li>拦截器的执行顺序与<code>interceptors.request.use(function () &#123;/*...*/&#125;)</code>执行的顺序有关,即先<code>use</code>的请求拦截器会先执行。</li>
+<li>如果拦截器中的函数时async函数，会阻塞整个拦截器链的执行，而transformData不会，所以如果需要对请求的数据做异步处理的话，要在拦截器中完成。</li>
 </ul>
 </li>
-<li><p>BFC</p>
-</li>
-<li><p>定位position<br>relative 元素相对于自己原来的位置偏移<br>absolute 相对于第一个非static的父元素定位<br>fixed 相对于浏览器窗口定位</p>
-</li>
-<li><p>CSS选择器<br>id选择器<br>类选择器<br>标签选择器</p>
-</li>
-</ol>
-<p>优先级：!important &gt; 内联 &gt; id选择器 &gt; 类 伪类 属性 &gt; 标签 伪元素</p>
-<ol start="6">
-<li>常见布局（双栏、三栏）<br>双栏</li>
-</ol>
-<p>三栏</p>
-<ol start="7">
-<li><p>flex</p>
-</li>
-<li><p>grid</p>
-</li>
-</ol>
-<h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><p>经典题目：从URL输入到页面展现背后发生的事</p>
-<ol>
-<li>在浏览器中输入url（url编码）</li>
-<li>浏览器查找域名对应的IP地址（DNS）</li>
-<li>浏览器根据IP地址与服务器建立联系（HTTP）</li>
-<li>浏览器解析返回的HTML字符串（DOM，reflow，repaint）</li>
-</ol>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
-<li>[1] <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42088314/article/details/115088381">https://blog.csdn.net/weixin_42088314/article/details/115088381</a></li>
-<li>[2] <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37580235/article/details/82317240">https://blog.csdn.net/weixin_37580235/article/details/82317240</a></li>
-<li>[3] <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4d0bc8776122">https://www.jianshu.com/p/4d0bc8776122</a></li>
+<li><p>dispatchRequest的核心逻辑</p>
+<ul>
+<li>处理config</li>
+<li>使用adapter发送请求,axios默认内置两个adapter,一个是负责在brower发送请求的，一个是负责在node端发送请求，可以在根文件的defaults下看到</li>
+<li>构造响应数据</li>
 </ul>
+<p>adapter是可以替换的（处理缓存的adapter）</p>
+<p>相应的拦截器接受的是response对象</p>
+</li>
+</ol>
 
       
     </div>
@@ -458,12 +383,6 @@ See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvi
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/%E9%9D%A2%E7%BB%8F/" rel="tag"># 面经</a>
-          
-        </div>
-      
 
       
       
@@ -473,8 +392,8 @@ See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvi
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/03/25/flex%E5%B8%83%E5%B1%80/" rel="next" title="flex布局">
-                <i class="fa fa-chevron-left"></i> flex布局
+              <a href="/2021/03/26/%E9%9D%A2%E7%BB%8F/" rel="next" title="面经">
+                <i class="fa fa-chevron-left"></i> 面经
               </a>
             
           </div>
@@ -482,10 +401,6 @@ See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvi
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/06/27/axios%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="prev" title="axios源码阅读笔记">
-                axios源码阅读笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -617,7 +532,7 @@ See the Pen <a target="_blank" rel="noopener" href='https://codepen.io/BestSilvi
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML"><span class="nav-number">1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS"><span class="nav-number">2.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C"><span class="nav-number">3.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#axios%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">axios实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Axios%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">Axios类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dispatchRequest"><span class="nav-number">1.3.</span> <span class="nav-text">dispatchRequest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CancelToken"><span class="nav-number">1.4.</span> <span class="nav-text">CancelToken</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter"><span class="nav-number">1.5.</span> <span class="nav-text">Adapter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="nav-number">1.6.</span> <span class="nav-text">整体流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="nav-number">1.7.</span> <span class="nav-text">相关问题</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -249,6 +249,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/27/axios%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qianyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/06/27/axios%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="url">axios源码阅读笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-06-27T12:24:54+08:00">
+                2021-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id=""><a href="#" class="headerlink" title=""></a></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line"> adapters --&gt; http.js</span><br><span class="line"> adapters --&gt; xhr.js</span><br><span class="line"> </span><br><span class="line"> cancel --&gt; Cancel.js</span><br><span class="line"> cancel --&gt; CancelToken.js</span><br><span class="line"> cancel --&gt; isCancel.js</span><br><span class="line"> </span><br><span class="line"> core --&gt; Axios.js</span><br><span class="line"> core --&gt; createError.js</span><br><span class="line"> core --&gt; dispatchRequest.js</span><br><span class="line"> core --&gt; enhanceError.js</span><br><span class="line"> core --&gt; InterceptorManager.js</span><br><span class="line"> core --&gt; settle.js</span><br><span class="line"> core --&gt; transformData.js</span><br><span class="line"> </span><br><span class="line"> helpers --&gt; bind.js</span><br><span class="line"> helpers --&gt; buildURL.js</span><br><span class="line"> helpers --&gt; combineURL.js</span><br><span class="line"> helpers --&gt; cookies.js</span><br><span class="line"> helpers --&gt; deprecatedMethod.js</span><br><span class="line"> helpers --&gt; isAbsoluteURL.js</span><br><span class="line"> helpers --&gt; isURLSameOrigin.js</span><br><span class="line"> helpers --&gt; normalizeHeaderName.js</span><br><span class="line"> helpers --&gt; parseHeaders.js</span><br><span class="line"> helpers --&gt; spread.js</span><br><span class="line"></span><br><span class="line"> axios.js --&gt; 对外暴露接口</span><br><span class="line"> defaults.js --&gt; 默认配置</span><br><span class="line"> utils.js --&gt; 工具方法</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="axios实例"><a href="#axios实例" class="headerlink" title="axios实例"></a>axios实例</h2><p>axios入口文件： /lib/axios.js</p>
+<p>createInstance(defaultConfig)用于创建axios实例</p>
+<p>axios(config) –&gt; request</p>
+<p>axios.(url[, config]) –&gt; request (/lib/core/Axios.js中的forEachMethodNoData去合并config)，axios.get(‘XXXX’, {}) 调用的是Axios.prototype[method] = function(url, config){}</p>
+<h2 id="Axios类"><a href="#Axios类" class="headerlink" title="Axios类"></a>Axios类</h2><p>/lib/core/Axios.js下</p>
+<p>Axios.prototype.request 发送请求</p>
+<p>request和reponse的拦截器是放入同一个数组的，一个往头添加 一个往尾添加</p>
+<h2 id="dispatchRequest"><a href="#dispatchRequest" class="headerlink" title="dispatchRequest"></a>dispatchRequest</h2><p>发送请求 </p>
+<p>取消机制，确保头部存在，转化request数据，</p>
+<p>adapter适配器</p>
+<p>onAdapterResolution</p>
+<h2 id="CancelToken"><a href="#CancelToken" class="headerlink" title="CancelToken"></a>CancelToken</h2><p>axios的取消机制</p>
+<h2 id="Adapter"><a href="#Adapter" class="headerlink" title="Adapter"></a>Adapter</h2><p>/lib/adapters下</p>
+<p>xhr.js中用的是XMLHttpRequest这个方法</p>
+<h2 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">graph TB;</span><br><span class="line"> axios --&gt; createInstance</span><br><span class="line"> axios.creat --&gt; createInstance</span><br><span class="line"> createInstance --&gt; 执行&#x2F;别名执行</span><br><span class="line"> config --&gt; 执行&#x2F;别名执行</span><br><span class="line"> 执行&#x2F;别名执行 --&gt; Axios.prototype.request</span><br><span class="line"> Axios.prototype.request --&gt; interceptors</span><br><span class="line"> interceptors --&gt; dispatchRequest</span><br><span class="line"> transformdata --&gt; dispatchRequest</span><br><span class="line"> dispatchRequest --&gt; adapter</span><br><span class="line"> adapter --&gt; 报错&#x2F;cancel</span><br><span class="line"> 报错&#x2F;cancel --yes--&gt; yes(&quot;axios rejected&quot;)</span><br><span class="line"> 报错&#x2F;cancel --no--&gt; no(&quot;axios fulfilled&quot;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><ol>
+<li><p>axios对象如果做到既能做对象使用，又能做 函数使用</p>
+<p>axios.get(url[, config])和axios(config)</p>
+<p>在创建实例createInstance中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> instance = bind(Axios.prototype.request, context);</span><br></pre></td></tr></table></figure>
+
+<p>instance其实是一个绑定了this的函数，调用axios其实是调用context.request -&gt; 做函数使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">utils.extend(instance, Axios.prototype, context);</span><br></pre></td></tr></table></figure>
+
+<p>这一行将Axios.prototype上的方法扩展到instance对象上，所以axios.get相当于Axios.prototype.get（绑定了context）</p>
+</li>
+<li><p>拦截器的主要逻辑</p>
+<ul>
+<li>发送请求的整个执行顺序是，requestInterceptors –&gt; dispatchRequest –&gt; responseInterceptors</li>
+<li>拦截器最初接收的对象是config，axios使用中也规定，请求的拦截器必须要返回config，这也是每个请求拦截器的函数参数是config的原因</li>
+<li>拦截器的执行顺序与<code>interceptors.request.use(function () &#123;/*...*/&#125;)</code>执行的顺序有关,即先<code>use</code>的请求拦截器会先执行。</li>
+<li>如果拦截器中的函数时async函数，会阻塞整个拦截器链的执行，而transformData不会，所以如果需要对请求的数据做异步处理的话，要在拦截器中完成。</li>
+</ul>
+</li>
+<li><p>dispatchRequest的核心逻辑</p>
+<ul>
+<li>处理config</li>
+<li>使用adapter发送请求,axios默认内置两个adapter,一个是负责在brower发送请求的，一个是负责在node端发送请求，可以在根文件的defaults下看到</li>
+<li>构造响应数据</li>
+</ul>
+<p>adapter是可以替换的（处理缓存的adapter）</p>
+<p>相应的拦截器接受的是response对象</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/26/%E9%9D%A2%E7%BB%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -977,7 +1145,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
