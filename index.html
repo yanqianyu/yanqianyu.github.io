@@ -249,6 +249,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/12/%E5%85%B3%E4%BA%8Ehttps%E7%9A%84s%E5%92%8C%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qianyu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/09/12/%E5%85%B3%E4%BA%8Ehttps%E7%9A%84s%E5%92%8C%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" itemprop="url">关于https的s和加密算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-09-12T09:50:15+08:00">
+                2021-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><p>（之前以为https中的s就是指ssl，面完试发现还有一种tls。。。）<br>首先SSL（Secure Socket Layer）是基于HTTPS下的一个协议加密层。HTTP的一个安全隐患是传输数据时使用的都是明文（即便数据在报体内，也可以被抓包工具获取）。为了解决这个问题推出了SSL，是HTTP之下TCP之上的一个协议层，TLS是SSL3.0的标准化实现（其实可以说近似于SSL3.1？）。事实上我们现在用的基本都是TLS，但是历史上习惯了SSL这个称呼。</p>
+<p>TLS和SSL的主要区别：</p>
+<ol>
+<li>版本号<br> 二者记录格式相同，但是版本号的值不同</li>
+<li>报文明鉴码<br> SSL和TLS的MAC算法以MAC算法计算的范围不同（什么是MAC算法：含密钥的HASH函数，消息的散列值由只有通信双方知道的秘钥来控制）。TLS使用HMAC算法，SSL使用了类似的算法，但HMAC中填充字节和密钥之间的是异或算法，而SSL中是连接运算。</li>
+<li>伪随机函数<br> TLS中使用PRF伪随机函数将密钥扩展为数据块</li>
+<li>报警代码<br> TLS支持几乎所有SSL的报警代码，并且补充定义了很多报警代码（解密失败、记录溢出、未知、拒绝访问等）</li>
+<li>加密计算<br> 解密主密值时采用的方式不同</li>
+<li>填充<br> 用户数据加密之前需要增加的填充字节，在SSL中，填充后的数据长度要达到密文块长度的最小整数倍，而TLS中可以是任意整数倍（防止基于对报文长度进行分析的攻击）</li>
+</ol>
+<p>HTTP采用对称加密和非对称加密并用的混合加密机制。在交换密钥环节使用非对称加密，通信建立起来之后使用对称加密。但是非对称加密中的公开密钥无法证实该公开密钥就是真实可信的公开密钥本身，所以需要使用由数字证书认证机构CA和其相关机构办法的公开密钥证书。</p>
+<p>参考《图解HTTP》了解一下HTTPS的SSL握手过程：</p>
+<ol>
+<li>客户端发送Client Hello报文开始SSL通信，报文中包括客户端支持的SSL的版本、加密组件列表（加密算法、密钥长度等）</li>
+<li>服务器可以进行SSL通信时，会以Server Hello报文作为应答，和客户端一样，报文中包含SSL版本以及加密组件（从客户端发来的组件中筛选出来的）</li>
+<li>服务器发送Certificate报文，报文中包括公开密钥证书</li>
+<li>服务端发送Server Hello Sone报文通知客户端，最初阶段的SSL握手协商部分结束</li>
+<li>SSL第一次握手结束后，客户端以Client Key Exchange报文作为回应，报文中包括已经被公开密钥加密的随机密码串</li>
+<li>客户端继续发送Change Cipher Spec 报文，提示服务器之后的通信采用步骤五中的随机密码串进行加密</li>
+<li>客户端发送Finished报文，包含连接至今全部报文的整体校验值，握手协商能否成功，以服务器能否正确的解密该报文为准</li>
+<li>服务器同样发送Change Cipher Spec报文</li>
+<li>服务器同样发送Finished报文</li>
+<li>客户端与服务端的Finished报文交换完毕后，SSL连接建立完成。然后开始应用层的协议</li>
+</ol>
+<h1 id="加密算法（待详细了解。。。）"><a href="#加密算法（待详细了解。。。）" class="headerlink" title="加密算法（待详细了解。。。）"></a>加密算法（待详细了解。。。）</h1><h2 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h2><p>使用哈希函数，对一段信息产生信息摘要，以防止被篡改</p>
+<h2 id="SHA1"><a href="#SHA1" class="headerlink" title="SHA1"></a>SHA1</h2><p>消息摘要算法哈希算法</p>
+<h2 id="HMAC算法"><a href="#HMAC算法" class="headerlink" title="HMAC算法"></a>HMAC算法</h2><p>密钥相关的哈希运算消息认证码，利用哈希算法，以一个密钥和一个消息为输入，生成一个消息摘要作为输出</p>
+<h2 id="AES"><a href="#AES" class="headerlink" title="AES"></a>AES</h2><p>对称块加密算法</p>
+<h2 id="DES"><a href="#DES" class="headerlink" title="DES"></a>DES</h2><p>分组密码，以64位为分组对数据加密，密钥长度56位</p>
+<h2 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h2><p>对两个大素数的乘积进行因式分解是非常困难的，所以可以使用乘积作为加密密钥</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[1] <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a7292b4db7bd">https://www.jianshu.com/p/a7292b4db7bd</a><br>[2] 《图解HTTP》</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/30/redux%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1413,7 +1563,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
